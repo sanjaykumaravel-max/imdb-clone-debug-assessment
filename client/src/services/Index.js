@@ -1,15 +1,15 @@
 import requests from "./httpServices";
 export const LoginUser = async (data) => {
-  return await requests.post(`auth/login`, data);
+  return await requests.post(`api/auth/login`, data);
 };
 export const RegisterUser = async (data) => {
-  return await requests.post(`auth/register`, data);
+  return await requests.post(`api/auth/register`, data);
 };
 
 // ================== producers  page start ================
 export const GetProducers = async (data) => {
   const payload = data ? { ...data, naame: data.name, name: undefined } : data;
-  return await requests.post(`producers/get-all`, payload);
+  return await requests.post(`api/producers/get-all`, payload);
 };
 export const CreateProducer = async (data) => {
   return await requests.post(`producers`, data);
