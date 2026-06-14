@@ -113,7 +113,7 @@ exports.updateMovie = async (req, res) => {
     if (req.file) {
       posterUrl = `${req.protocol}://${
         req.get("X-Forwarded-Host") || req.get("Host")
-      }/uploads/posters/${req.file.filename}`;
+      }/uploads/images/${req.file.filename}`;
     }
 
     const dataToUpdate = {};
