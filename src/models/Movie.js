@@ -54,25 +54,30 @@ const Movie = {
 
     const trx = await db.transaction();
 
-    if (producer) {
-      movieData.producer_id = producer;
+    try {
+      if (producer) {
+        movieData.producer_id = producer;
     }
 
-    // Insert movie using trx
     const [movieId] = await trx("movies").insert(movieData);
 
-    // Insert actors using trx
     if (actors && actors.length > 0) {
       const actorRelations = actors.map((actorId) => ({
         movie_id: movieId,
         actor_id: actorId,
       }));
+
       await trx("movie_actors").insert(actorRelations);
     }
 
-    return this.findById(movieId);
-  },
+    await trx.commit();
 
+    return this.findById(movieId);
+  } catch (err) {
+    await trx.rollback();
+    throw err;
+  }
+},
   async findByIdAndUpdate(id, data, options = {}) {
     const { actors, producer, ...movieData } = data;
 
