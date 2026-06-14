@@ -119,7 +119,7 @@ exports.updateMovie = async (req, res) => {
     const dataToUpdate = {};
     if (name !== undefined) dataToUpdate.name = name;
     if (yearOfRelease !== undefined) dataToUpdate.yearOfRelease = yearOfRelease;
-    // if (plot !== undefined) dataToUpdate.plot = plot;
+    if (plot !== undefined) dataToUpdate.plot = plot;
     if (posterUrl !== undefined) dataToUpdate.poster = posterUrl;
     if (producer !== undefined) dataToUpdate.producer = producer;
     if (actors !== undefined) dataToUpdate.actors = actors;
