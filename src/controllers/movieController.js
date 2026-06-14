@@ -14,7 +14,10 @@ exports.getAllMovies = async (req, res) => {
     const movies = await Movie.find(filter, limit, offset);
 
     const db = require("../../database/db");
-    const totalCount = await db("movies").count("* as count").first();
+    const totalCount = await db("movies")
+  .whereNull("deleted_at")
+  .count("* as count")
+  .first();
 
     sendResponse(res, {
       data: movies,
