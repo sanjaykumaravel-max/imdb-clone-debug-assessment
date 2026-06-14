@@ -50,7 +50,7 @@ const EditMovie = () => {
           name: data.name,
           yearOfRelease: data.yearOfRelease,
           plot: data.plot,
-          producer: data.producer.id,
+          producer: data.producer?.id || "",
           actors: data.actors?.map((actor) => actor.id) || [],
         });
         if (data.poster) {
